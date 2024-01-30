@@ -1,0 +1,15 @@
+.next-line {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+  
+  .detalle-item {
+    margin-bottom: 10px;
+  }
+  
+  .detalle-item strong {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
