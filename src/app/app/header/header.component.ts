@@ -1,17 +1,18 @@
 import { Component } from '@angular/core';
-import { DxToolbarModule } from 'devextreme-angular';
+import { DxToolbarModule  } from 'devextreme-angular';
 import { EmpleadosService } from '../../services/empleados.service';
 import { DatePipe } from '@angular/common';
-import { NgIf } from '@angular/common';
+import { NgIf, NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [DxToolbarModule, DatePipe, NgIf],
+  imports: [DxToolbarModule, DatePipe, NgIf, NgFor],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+  codigosIngresados: string[] = [];
   
   codigoIngresado: string = '';
   date = new Date();
@@ -23,6 +24,8 @@ export class HeaderComponent {
   showEmpleadosDetails(code: string){
     this.empleado = this.empleadoService.getEmployeeByCode(code);
     this.empleadoEncontrado = !!this.empleado; 
+     // Agregar el código ingresado al array
+  this.codigosIngresados.push(code);
   }
 
   onKeyPress(event: KeyboardEvent) {

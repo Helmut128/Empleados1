@@ -4,6 +4,11 @@
     margin-top: 20px;
   }
   
+  .date {
+    font-size: 30px; /* Tamaño de fuente más grande para la fecha */
+    color: green; /* Cambia el color del texto según tu preferencia */
+  }
+  
   .detalle-item {
     margin-bottom: 10px;
   }
@@ -12,4 +17,47 @@
     font-weight: bold;
     margin-right: 10px;
   }
+
+  .codigo-input {
+    font-size: 20px; /* Tamaño de fuente más grande */
+    color: rgb(0, 0, 0); /* Cambia el color del texto según tu preferencia */
+    border: 1px solid #ccc; /* Añade un borde */
+    border-radius: 5px; /* Redondea las esquinas */
+    padding: 8px; /* Espaciado interno */
+    transition: border-color 0.3s ease; /* Agrega transición para suavizar el cambio de color del borde */
+    margin-bottom: 10px;
+  }
   
+  .codigo-input:hover, .codigo-input:focus {
+    background-color: #f0f0f0; /* Color de fondo al pasar el mouse o al estar activo */
+    
+  }
+  
+  .left-content,
+.right-content {
+  font-size: 20px; /* Tamaño de fuente igual al del campo de entrada */
+  color: red; /* Cambia el color del texto según tu preferencia */
+  border: 1px solid #ccc; /* Añade un borde */
+  border-radius: 5px; /* Redondea las esquinas */
+  padding: 8px; /* Espaciado interno */
+  transition: border-color 0.3s ease; /* Agrega transición para suavizar el cambio de color del borde */
+}
+
+.left-content:hover, .right-content:hover {
+  background-color: #f0f0f0; /* Color de fondo al pasar el mouse */
+}
+
+.empleado-details {
+  display: flex; /* Utiliza flexbox para distribuir los elementos en dos columnas */
+}
+
+.left-column {
+  flex: 1; /* Ocupa el 50% del espacio disponible */
+  padding-right: 20px; /* Añade espacio entre las dos columnas */
+  margin-top: 20px;
+}
+
+.right-column {
+  flex: 1; /* Ocupa el 50% del espacio disponible */
+  margin-top: 20px;
+}
