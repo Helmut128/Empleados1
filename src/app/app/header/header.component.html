@@ -1,49 +1,59 @@
-<input type="text" placeholder="Ingrese código" (keypress)="onKeyPress($event)" class="codigo-input">
-<label *ngIf="codigoInvalido" class="error-label">Código incorrecto, por favor intente de nuevo.</label>
+<input
+  type="text"
+  placeholder="Ingrese código"
+  (keypress)="onKeyPress($event)"
+  class="codigo-input"
+/>
+
+@if(codigoInvalido){
+
+<div class="dx-fieldset-header">
+  <label class="error-label"
+    >Código incorrecto, por favor intente de nuevo.</label
+  >
+</div>
+}
 
 <dx-toolbar>
-    <dxi-item [location]="'before'">
-      <div class="left-content">
-        Salida Turno Día
-      </div>
-    </dxi-item>
+  <dxi-item [location]="'before'">
+    <div class="left-content">Salida Turno Día</div>
+  </dxi-item>
 
-    <dxi-item [location]="'center'">
+  <dxi-item [location]="'center'">
     <p class="date">Fecha: {{ date | date }}</p>
   </dxi-item>
-  
-    <dxi-item [location]="'after'">
-      <div class="right-content">
-        Entrada Turno Noche
-      </div>
-    </dxi-item>
-  </dx-toolbar>
-  <br>
-  
-  <div *ngIf="empleado" class="empleado-details">
-    <div class="left-column">
-      <strong>Código ingresado: </strong>
-      <span>{{ codigoIngresado }}</span>
-      <p><strong>Nombre completo: </strong>{{ empleado.nombreCompleto }}</p>
-    </div>
-    <div class="right-column">
-      <p><strong>Turno: </strong>{{ empleado.turno }}</p>
-      <p><strong>Hora salida: </strong> {{ empleado.entryTime }}</p>
-      <p><strong>Hora Entrada: </strong>{{ empleado.exitTime }}</p>
-    </div>
-  </div>
 
+  <dxi-item [location]="'after'">
+    <div class="right-content">Entrada Turno Noche</div>
+  </dxi-item>
+</dx-toolbar>
+<br />
 
-  <div *ngIf="empleadosIngresados.length > 0" class="empleados-list">
-    <h3>Empleados ingresados:</h3>
-    <ul>
-      <li *ngFor="let empleado of empleadosIngresados">
-        <strong>Código: </strong>{{ empleado.code }} - 
-        <strong>Nombre: </strong>{{ empleado.nombreCompleto }} - 
-        <strong>Turno: </strong>{{ empleado.turno }} - 
-        <strong>Hora de entrada: </strong>{{ empleado.entryTime }} - 
-        <strong>Hora de salida: </strong>{{ empleado.exitTime }}
-      </li>
-    </ul>
+@if(empleado) {
+<div class="empleado-details">
+  <div class="left-column">
+    <strong>Código ingresado: </strong>
+    <span>{{ codigoIngresado }}</span>
+    <p><strong>Nombre completo: </strong>{{ empleado.nombreCompleto }}</p>
   </div>
-  
+  <div class="right-column">
+    <p><strong>Turno: </strong>{{ empleado.turno }}</p>
+    <p><strong>Hora salida: </strong> {{ empleado.entryTime }}</p>
+    <p><strong>Hora Entrada: </strong>{{ empleado.exitTime }}</p>
+  </div>
+</div>
+} @if(empleadosIngresados){
+<div class="empleados-list">
+  <h3>Empleados ingresados:</h3>
+
+  <dx-list [dataSource]="empleadosIngresados" height="100%">
+    <div *dxTemplate="let empleado of 'item'">
+      <strong>Código: </strong>{{ empleado.code }} - <strong>Nombre: </strong
+      >{{ empleado.nombreCompleto }} - <strong>Turno: </strong
+      >{{ empleado.turno }} - <strong>Hora de entrada: </strong
+      >{{ empleado.entryTime }} - <strong>Hora de salida: </strong
+      >{{ empleado.exitTime }}
+    </div>
+  </dx-list>
+</div>
+}

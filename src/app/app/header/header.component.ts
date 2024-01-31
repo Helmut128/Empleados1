@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { DxToolbarModule  } from 'devextreme-angular';
+import {
+  DxToolbarModule,
+  DxListModule,
+  DxFormModule,
+} from 'devextreme-angular';
 import { EmpleadosService } from '../../services/empleados.service';
 import { DatePipe } from '@angular/common';
 import { NgIf, NgFor } from '@angular/common';
@@ -7,9 +11,9 @@ import { NgIf, NgFor } from '@angular/common';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [DxToolbarModule, DatePipe, NgIf, NgFor],
+  imports: [DxToolbarModule, DatePipe, NgIf, NgFor, DxListModule, DxFormModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrl: './header.component.css',
 })
 export class HeaderComponent {
   codigosIngresados: string[] = [];
@@ -22,24 +26,26 @@ export class HeaderComponent {
 
   constructor(private empleadoService: EmpleadosService) {}
 
-  showEmpleadosDetails(code: string){
+  showEmpleadosDetails(code: string) {
     this.empleado = this.empleadoService.getEmployeeByCode(code);
-    this.empleadoEncontrado = !!this.empleado; 
+    this.empleadoEncontrado = !!this.empleado;
 
     if (this.empleadoEncontrado) {
-     // Agregar el código ingresado al array
-    this.codigosIngresados.push(code);
-    // Agregar la información del empleado al array de empleados ingresados
-    this.empleadosIngresados.push(this.empleado);
-    this.empleadosIngresados.reverse();
-     // Restablecer el estado del mensaje de error
-     this.codigoInvalido = false;
-   }
-   else {
-    // Marcar como código inválido y mostrar el mensaje de error
-    this.codigoInvalido = true;
+      // Agregar el código ingresado al array
+      this.codigosIngresados.push(code);
+
+      // Agregar la información del empleado al array de empleados ingresados
+      //this.empleadosIngresados.push(this.empleado);
+      this.empleadosIngresados = [this.empleado, ...this.empleadosIngresados];
+      //this.empleadosIngresados.reverse();
+
+      // Restablecer el estado del mensaje de error
+      this.codigoInvalido = false;
+    } else {
+      // Marcar como código inválido y mostrar el mensaje de error
+      this.codigoInvalido = true;
+    }
   }
-}
 
   onKeyPress(event: KeyboardEvent) {
     const inputElement = event.target as HTMLInputElement;
@@ -61,7 +67,5 @@ export class HeaderComponent {
       inputElement.value = '';
     }
   }
-  ngOnInit() {
-   
-  }
+  ngOnInit() {}
 }
