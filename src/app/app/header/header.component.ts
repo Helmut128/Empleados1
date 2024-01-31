@@ -7,6 +7,7 @@ import {
 import { EmpleadosService } from '../../services/empleados.service';
 import { DatePipe } from '@angular/common';
 import { NgIf, NgFor } from '@angular/common';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-header',
@@ -23,6 +24,8 @@ export class HeaderComponent {
   empleado: any;
   empleadoEncontrado: boolean = false;
   codigoInvalido: boolean = false;
+
+  data: any[] = [];
 
   constructor(private empleadoService: EmpleadosService) {}
 
@@ -45,6 +48,32 @@ export class HeaderComponent {
       // Marcar como código inválido y mostrar el mensaje de error
       this.codigoInvalido = true;
     }
+  }
+
+  exportToExcel(): void {
+    this.data = this.empleadosIngresados;
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.data);
+    const workbook: XLSX.WorkBook = {
+      Sheets: { data: worksheet },
+      SheetNames: ['data'],
+    };
+    const excelBuffer: any = XLSX.write(workbook, {
+      bookType: 'xlsx',
+      type: 'array',
+    });
+    this.saveExcelFile(excelBuffer, 'empleadosIngresados');
+  }
+
+  private saveExcelFile(buffer: any, fileName: string): void {
+    const data: Blob = new Blob([buffer], { type: 'application/octet-stream' });
+    const url: string = window.URL.createObjectURL(data);
+    const a: HTMLAnchorElement = document.createElement('a');
+    a.href = url;
+    a.download = fileName + '.xlsx';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
   }
 
   onKeyPress(event: KeyboardEvent) {

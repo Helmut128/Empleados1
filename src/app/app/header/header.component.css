@@ -1,50 +1,70 @@
-.next-line {
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-  }
-  
-  .date {
-    font-size: 20px; /* Tamaño de fuente más grande para la fecha */
-    color: green; /* Cambia el color del texto según tu preferencia */
-    margin-top: 20px;
-  }
-
-  .error-label {
-    margin-bottom: 20px;
-    color: green; /* Cambia el color del texto a rojo */
-    font-weight: bold; /* Hace que el texto sea más grueso */
-    margin-top: 50px; /* Agrega un espacio superior para separarlo de otros elementos */
+/* Estilos para el botón de exportar a Excel */
+.export-button {
+  background-color: #4caf50; /* Color de fondo */
+  border: none; /* Sin borde */
+  color: white; /* Color del texto */
+  padding: 10px 20px; /* Espaciado interno */
+  text-align: center; /* Alineación de texto */
+  text-decoration: none; /* Sin subrayado */
+  display: inline-block; /* Mostrar como elemento en línea */
+  font-size: 16px; /* Tamaño de la fuente */
+  margin: 4px 2px; /* Margen exterior */
+  cursor: pointer; /* Cursor al pasar el mouse */
+  border-radius: 4px; /* Borde redondeado */
+  transition-duration: 0.4s; /* Duración de la transición */
 }
 
-  .detalle-item {
-    margin-bottom: 10px;
-  }
-  
-  .detalle-item strong {
-    font-weight: bold;
-    margin-right: 10px;
-  }
+.export-button:hover {
+  background-color: #45a049; /* Cambiar color de fondo al pasar el mouse */
+}
 
-  .codigo-input {
-    font-size: 20px; /* Tamaño de fuente más grande */
-    color: rgb(0, 0, 0); /* Cambia el color del texto según tu preferencia */
-    border: 1px solid #ccc; /* Añade un borde */
-    border-radius: 5px; /* Redondea las esquinas */
-    padding: 8px; /* Espaciado interno */
-    transition: border-color 0.3s ease; /* Agrega transición para suavizar el cambio de color del borde */
-    margin-bottom: 50px;
-    margin: 0 auto; /* Centra el input horizontalmente */
-    display: block; /* Asegura que el input ocupe todo el ancho disponible */
-    margin-top: 20px;
-  }
-  
-  .codigo-input:hover, .codigo-input:focus {
-    background-color: #f0f0f0; /* Color de fondo al pasar el mouse o al estar activo */
-    
-  }
-  
-  .left-content,
+.next-line {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.date {
+  font-size: 20px; /* Tamaño de fuente más grande para la fecha */
+  color: green; /* Cambia el color del texto según tu preferencia */
+  margin-top: 20px;
+}
+
+.error-label {
+  margin-bottom: 20px;
+  color: green; /* Cambia el color del texto a rojo */
+  font-weight: bold; /* Hace que el texto sea más grueso */
+  margin-top: 50px; /* Agrega un espacio superior para separarlo de otros elementos */
+}
+
+.detalle-item {
+  margin-bottom: 10px;
+}
+
+.detalle-item strong {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.codigo-input {
+  font-size: 20px; /* Tamaño de fuente más grande */
+  color: rgb(0, 0, 0); /* Cambia el color del texto según tu preferencia */
+  border: 1px solid #ccc; /* Añade un borde */
+  border-radius: 5px; /* Redondea las esquinas */
+  padding: 8px; /* Espaciado interno */
+  transition: border-color 0.3s ease; /* Agrega transición para suavizar el cambio de color del borde */
+  margin-bottom: 50px;
+  margin: 0 auto; /* Centra el input horizontalmente */
+  display: block; /* Asegura que el input ocupe todo el ancho disponible */
+  margin-top: 20px;
+}
+
+.codigo-input:hover,
+.codigo-input:focus {
+  background-color: #f0f0f0; /* Color de fondo al pasar el mouse o al estar activo */
+}
+
+.left-content,
 .right-content {
   font-size: 20px; /* Tamaño de fuente igual al del campo de entrada */
   color: rgb(216, 24, 24); /* Cambia el color del texto según tu preferencia */
@@ -53,13 +73,10 @@
   margin-top: 20px;
 }
 
-
 .empleado-details {
   display: flex; /* Utiliza flexbox para distribuir los elementos en dos columnas */
   margin-top: 30px;
-  min-height: 100px; 
-
-
+  min-height: 100px;
 }
 .left-column {
   flex: 1; /* Ocupa el 50% del espacio disponible */
@@ -72,14 +89,13 @@
   margin-top: 20px;
 }
 
-
 /* Estilos para pantallas medianas y grandes */
 @media screen and (min-width: 769px) {
-  .left-column, .right-column {
+  .left-column,
+  .right-column {
     width: 48%; /* Divide el espacio en dos columnas en pantallas más grandes */
   }
 }
-
 
 /* Estilos para dispositivos móviles */
 @media screen and (min-width: 0px) and (max-width: 767px) {
@@ -91,7 +107,7 @@
   .right-column {
     width: 100%; /* Ajusta el ancho de las columnas al 100% para una línea vertical */
     margin-top: 10px; /* Agrega un poco de espacio entre las columnas */
-  }  
+  }
 }
 
 /* Estilos para dispositivos móviles */
@@ -118,10 +134,11 @@
   }
 
   .empleados-list li {
-    width: calc(50% - 10px); /* Calcula el ancho para dos columnas con espacio entre ellas */
+    width: calc(
+      50% - 10px
+    ); /* Calcula el ancho para dos columnas con espacio entre ellas */
   }
 }
-
 
 /* Evitar desbordamiento horizontal */
 body {
@@ -130,7 +147,10 @@ body {
 
 /* Ajustar elementos para dispositivos móviles */
 @media (max-width: 767px) {
-  .date, .left-content, .center-content, .right-content {
+  .date,
+  .left-content,
+  .center-content,
+  .right-content {
     font-size: 16px;
     width: 100%;
     margin-bottom: 10px;
@@ -140,7 +160,10 @@ body {
 
 /* Estilos para tabletas */
 @media (min-width: 768px) and (max-width: 1023px) {
-  .date, .left-content, .center-content, .right-content {
+  .date,
+  .left-content,
+  .center-content,
+  .right-content {
     font-size: 18px;
   }
 }
