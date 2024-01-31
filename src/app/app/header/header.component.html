@@ -1,4 +1,5 @@
-<p class="date">Fecha: {{ date | date }}</p>
+<input type="text" placeholder="Ingrese código" (keypress)="onKeyPress($event)" class="codigo-input">
+<label *ngIf="codigoInvalido" class="error-label">Código incorrecto, por favor intente de nuevo.</label>
 
 <dx-toolbar>
     <dxi-item [location]="'before'">
@@ -6,11 +7,11 @@
         Salida Turno Día
       </div>
     </dxi-item>
+
     <dxi-item [location]="'center'">
-      <div class="center-content">
-        <input type="text" placeholder="Ingrese código" (keypress)="onKeyPress($event)" class="codigo-input">
-      </div>
-    </dxi-item>
+    <p class="date">Fecha: {{ date | date }}</p>
+  </dxi-item>
+  
     <dxi-item [location]="'after'">
       <div class="right-content">
         Entrada Turno Noche
@@ -18,29 +19,31 @@
     </dxi-item>
   </dx-toolbar>
   <br>
-<div *ngIf="empleado" class="empleado-details">
-  <div class="left-column">
-    <strong>Código ingresado: </strong>
-    <span>{{ codigoIngresado }}</span>
-    <p><strong>Nombre completo: </strong>{{ empleado.nombreCompleto }}</p>
+  
+  <div *ngIf="empleado" class="empleado-details">
+    <div class="left-column">
+      <strong>Código ingresado: </strong>
+      <span>{{ codigoIngresado }}</span>
+      <p><strong>Nombre completo: </strong>{{ empleado.nombreCompleto }}</p>
+    </div>
+    <div class="right-column">
+      <p><strong>Turno: </strong>{{ empleado.turno }}</p>
+      <p><strong>Hora salida: </strong> {{ empleado.entryTime }}</p>
+      <p><strong>Hora Entrada: </strong>{{ empleado.exitTime }}</p>
+    </div>
   </div>
-  <div class="right-column">
-    <p><strong>Turno: </strong>{{ empleado.turno }}</p>
-    <p><strong>Hora salida: </strong> {{ empleado.entryTime }}</p>
-    <p><strong>Hora Entrada: </strong>{{ empleado.exitTime }}</p>
+
+
+  <div *ngIf="empleadosIngresados.length > 0" class="empleados-list">
+    <h3>Empleados ingresados:</h3>
+    <ul>
+      <li *ngFor="let empleado of empleadosIngresados">
+        <strong>Código: </strong>{{ empleado.code }} - 
+        <strong>Nombre: </strong>{{ empleado.nombreCompleto }} - 
+        <strong>Turno: </strong>{{ empleado.turno }} - 
+        <strong>Hora de entrada: </strong>{{ empleado.entryTime }} - 
+        <strong>Hora de salida: </strong>{{ empleado.exitTime }}
+      </li>
+    </ul>
   </div>
-</div>
-
-<div *ngIf="codigosIngresados.length > 0">
-  <h3>Códigos ingresados:</h3>
-  <ul>
-    <li *ngFor="let codigo of codigosIngresados">{{ codigo }}</li>
-  </ul>
-</div>
-
-
-<div *ngIf="!empleado && empleadoEncontrado">
-  <p>Empleado no encontrado.</p>
-</div>
-
   

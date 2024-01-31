@@ -5,10 +5,18 @@
   }
   
   .date {
-    font-size: 30px; /* Tamaño de fuente más grande para la fecha */
+    font-size: 20px; /* Tamaño de fuente más grande para la fecha */
     color: green; /* Cambia el color del texto según tu preferencia */
+    margin-top: 20px;
   }
-  
+
+  .error-label {
+    margin-bottom: 20px;
+    color: green; /* Cambia el color del texto a rojo */
+    font-weight: bold; /* Hace que el texto sea más grueso */
+    margin-top: 50px; /* Agrega un espacio superior para separarlo de otros elementos */
+}
+
   .detalle-item {
     margin-bottom: 10px;
   }
@@ -25,7 +33,10 @@
     border-radius: 5px; /* Redondea las esquinas */
     padding: 8px; /* Espaciado interno */
     transition: border-color 0.3s ease; /* Agrega transición para suavizar el cambio de color del borde */
-    margin-bottom: 10px;
+    margin-bottom: 50px;
+    margin: 0 auto; /* Centra el input horizontalmente */
+    display: block; /* Asegura que el input ocupe todo el ancho disponible */
+    margin-top: 20px;
   }
   
   .codigo-input:hover, .codigo-input:focus {
@@ -36,21 +47,20 @@
   .left-content,
 .right-content {
   font-size: 20px; /* Tamaño de fuente igual al del campo de entrada */
-  color: red; /* Cambia el color del texto según tu preferencia */
-  border: 1px solid #ccc; /* Añade un borde */
-  border-radius: 5px; /* Redondea las esquinas */
+  color: rgb(216, 24, 24); /* Cambia el color del texto según tu preferencia */
   padding: 8px; /* Espaciado interno */
   transition: border-color 0.3s ease; /* Agrega transición para suavizar el cambio de color del borde */
+  margin-top: 20px;
 }
 
-.left-content:hover, .right-content:hover {
-  background-color: #f0f0f0; /* Color de fondo al pasar el mouse */
-}
 
 .empleado-details {
   display: flex; /* Utiliza flexbox para distribuir los elementos en dos columnas */
-}
+  margin-top: 30px;
+  min-height: 100px; 
 
+
+}
 .left-column {
   flex: 1; /* Ocupa el 50% del espacio disponible */
   padding-right: 20px; /* Añade espacio entre las dos columnas */
@@ -60,4 +70,77 @@
 .right-column {
   flex: 1; /* Ocupa el 50% del espacio disponible */
   margin-top: 20px;
+}
+
+
+/* Estilos para pantallas medianas y grandes */
+@media screen and (min-width: 769px) {
+  .left-column, .right-column {
+    width: 48%; /* Divide el espacio en dos columnas en pantallas más grandes */
+  }
+}
+
+
+/* Estilos para dispositivos móviles */
+@media screen and (min-width: 0px) and (max-width: 767px) {
+  .empleado-details {
+    flex-direction: column;
+  }
+
+  .left-column,
+  .right-column {
+    width: 100%; /* Ajusta el ancho de las columnas al 100% para una línea vertical */
+    margin-top: 10px; /* Agrega un poco de espacio entre las columnas */
+  }  
+}
+
+/* Estilos para dispositivos móviles */
+@media screen and (max-width: 767px) {
+  .empleados-list ul {
+    padding-left: 0; /* Elimina el padding izquierdo de la lista */
+    list-style-type: none; /* Elimina los estilos de lista */
+  }
+
+  .empleados-list li {
+    margin-bottom: 10px; /* Añade espacio entre elementos de la lista */
+    border: 1px solid #ccc; /* Añade un borde alrededor de cada elemento */
+    padding: 10px; /* Añade espacio interno a cada elemento */
+    border-radius: 5px; /* Redondea las esquinas */
+  }
+}
+
+/* Estilos para tablets */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .empleados-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .empleados-list li {
+    width: calc(50% - 10px); /* Calcula el ancho para dos columnas con espacio entre ellas */
+  }
+}
+
+
+/* Evitar desbordamiento horizontal */
+body {
+  overflow-x: hidden;
+}
+
+/* Ajustar elementos para dispositivos móviles */
+@media (max-width: 767px) {
+  .date, .left-content, .center-content, .right-content {
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 10px;
+    overflow-wrap: break-word; /* Permite que el texto se ajuste automáticamente */
+  }
+}
+
+/* Estilos para tabletas */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .date, .left-content, .center-content, .right-content {
+    font-size: 18px;
+  }
 }
