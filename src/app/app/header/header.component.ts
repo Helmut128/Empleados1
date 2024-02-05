@@ -7,7 +7,13 @@ import {
 import { EmpleadosService } from '../../services/empleados.service';
 import { DatePipe } from '@angular/common';
 import { NgIf, NgFor } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+//libreria para descargar en EXCEL
 import * as XLSX from 'xlsx';
+
+//Importar interfaz
+import { asistencia } from '../../interface/asistencia';
 
 @Component({
   selector: 'app-header',
@@ -24,6 +30,9 @@ export class HeaderComponent {
   empleado: any;
   empleadoEncontrado: boolean = false;
   codigoInvalido: boolean = false;
+  codigoIngresado2: number = 0;
+  //Array asistencia
+  listaAsistencia: asistencia[] = [];
 
   data: any[] = [];
 
@@ -49,7 +58,7 @@ export class HeaderComponent {
       this.codigoInvalido = true;
     }
   }
-
+  //Exportar excel
   exportToExcel(): void {
     this.data = this.empleadosIngresados;
     const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.data);
@@ -75,7 +84,7 @@ export class HeaderComponent {
     document.body.removeChild(a);
     window.URL.revokeObjectURL(url);
   }
-
+  //Termina exportar excel
   onKeyPress(event: KeyboardEvent) {
     const inputElement = event.target as HTMLInputElement;
     const keyPressed = event.key;
@@ -96,5 +105,23 @@ export class HeaderComponent {
       inputElement.value = '';
     }
   }
+
+  registarAsistencia(): void {
+    const horaRegistro = this.obtenerHoraActual();
+    this.listaAsistencia.push({
+      codigo: this.codigoIngresado2,
+      horaRegistro: horaRegistro,
+    });
+    this.codigoIngresado2 = 1; //Reinicia el codigo despues de ingresarlo
+  }
+
+  obtenerHoraActual(): string {
+    const ahora = new Date();
+    const horas = ahora.getHours().toString().padStart(2, '0');
+    const minutos = ahora.getMinutes().toString().padStart(2, '0');
+    const segundos = ahora.getSeconds().toString().padStart(2, '0');
+    return `${horas}:${minutos}:${segundos}`;
+  }
+
   ngOnInit() {}
 }
