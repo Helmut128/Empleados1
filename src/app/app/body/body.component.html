@@ -1,2 +1,120 @@
-<p>body works!</p>
+<!-- <input type="file" (change)="handleFileChange($event)" />
 
+@if (Excel.length > 0) {
+<table>
+  @for (cell of Excel; track $index) {
+  <tr>
+    @for (row of Excel; track $index) {
+    <td></td>
+    }
+  </tr>
+  }
+</table>
+} -->
+
+<!-- <input type="file" (change)="handleFileChange($event)" />
+<table *ngIf="Excel.length > 0">
+  <tr *ngFor="let row of Excel">
+    <td *ngFor="let cell of row">{{ cell }}</td>
+  </tr>
+</table> -->
+
+<div class="wrapper">
+  <fieldset class="body">
+    <div style="height: 100%">
+      <div style="height: 100%">
+        <dx-data-grid
+          [dataSource]="excelData"
+          width="100%"
+          height="100%"
+          [scrolling]="{ mode: 'virtual' }"
+          [showBorders]="true"
+        >
+          <dxo-scrolling mode="virtual"></dxo-scrolling>
+
+          <dxo-filter-row [visible]="true"></dxo-filter-row>
+
+          <dx-data-grid
+            *ngIf="excelData.length > 0"
+            [dataSource]="excelData"
+            [showBorders]="true"
+          >
+            <dxi-column
+              dataField="ItemNumber"
+              caption="Item Number"
+              [alignment]="'center'"
+              [allowEditing]="false"
+            ></dxi-column>
+            <dxi-column
+              dataField="ProductName"
+              caption="Item Name"
+              [alignment]="'center'"
+              [allowEditing]="false"
+            ></dxi-column>
+            <dxi-column
+              dataField="Location"
+              caption="Location"
+              [alignment]="'center'"
+              [allowEditing]="false"
+            ></dxi-column>
+            <dxi-column
+              dataField="LicensPlate"
+              caption="Carton ID"
+              [alignment]="'center'"
+              [allowEditing]="false"
+            ></dxi-column>
+            <dxi-column
+              dataField="PhySocialInventory"
+              caption="Physical Inventory"
+              [alignment]="'center'"
+              [allowEditing]="false"
+            ></dxi-column>
+          </dx-data-grid>
+
+          <dxo-summary>
+            <dxi-total-item
+              column="ItemNumber"
+              summaryType="sum"
+              displayFormat="{0}"
+              valueFormat="currency"
+            >
+            </dxi-total-item>
+
+            <dxi-total-item
+              column="PhySocialInventory"
+              summaryType="sum"
+              displayFormat="{0}"
+              valueFormat="currency"
+            >
+            </dxi-total-item>
+          </dxo-summary>
+        </dx-data-grid>
+      </div>
+    </div>
+  </fieldset>
+
+  <div class="buttonsBodyRigth">
+    <fieldset>
+      <dx-button
+        (onClick)="handleImportClick()"
+        text="Import"
+        type="normal"
+        [width]="100"
+        height="25px"
+      ></dx-button>
+      <input
+        id="excelFileInput"
+        type="file"
+        (change)="handleFileChange($event)"
+        style="display: none"
+      />
+      <dx-button
+        text="Clear"
+        type="normal"
+        [width]="100"
+        height="25px"
+        (onClick)="handleClearClick()"
+      ></dx-button>
+    </fieldset>
+  </div>
+</div>

@@ -58,7 +58,9 @@ export class HeaderComponent {
       this.codigoInvalido = true;
     }
   }
+
   //Exportar excel
+
   exportToExcel(): void {
     this.data = this.empleadosIngresados;
     const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.data);
@@ -85,6 +87,7 @@ export class HeaderComponent {
     window.URL.revokeObjectURL(url);
   }
   //Termina exportar excel
+
   onKeyPress(event: KeyboardEvent) {
     const inputElement = event.target as HTMLInputElement;
     const keyPressed = event.key;

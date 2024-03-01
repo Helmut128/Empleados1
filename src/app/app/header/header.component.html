@@ -38,12 +38,12 @@
   <div class="left-column">
     <strong>Código ingresado: </strong>
     <span>{{ codigoIngresado }}</span>
-    <p><strong>Nombre completo: </strong>{{ empleado.nombreCompleto }}</p>
+    <p><strong>Nombre completo: </strong>{{ empleado.NombreCompleto }}</p>
   </div>
   <div class="right-column">
-    <p><strong>Turno: </strong>{{ empleado.turno }}</p>
-    <p><strong>Hora salida: </strong> {{ empleado.entryTime }}</p>
-    <p><strong>Hora Entrada: </strong>{{ empleado.exitTime }}</p>
+    <p><strong>Turno: </strong>{{ empleado.Turno }}</p>
+    <p><strong>Hora salida: </strong> {{ empleado.EntryTime }}</p>
+    <p><strong>Hora Entrada: </strong>{{ empleado.ExitTime }}</p>
   </div>
 </div>
 
@@ -54,10 +54,10 @@
   <dx-list [dataSource]="empleadosIngresados" height="100%">
     <div *dxTemplate="let empleado of 'item'">
       <strong>Código: </strong>{{ empleado.code }} - <strong>Nombre: </strong
-      >{{ empleado.nombreCompleto }} - <strong>Turno: </strong
-      >{{ empleado.turno }} - <strong>Hora de entrada: </strong
-      >{{ empleado.entryTime }} - <strong>Hora de salida: </strong
-      >{{ empleado.exitTime }}
+      >{{ empleado.NombreCompleto }} - <strong>Turno: </strong
+      >{{ empleado.Turno }} - <strong>Hora de entrada: </strong
+      >{{ empleado.EntryTime }} - <strong>Hora de salida: </strong
+      >{{ empleado.ExitTime }}
     </div>
   </dx-list>
 </div>
